@@ -51,6 +51,9 @@ def demonstrate_arrays(recursive: bool = False) -> None:
     scores[0] = 85
     print(f"Array values: {scores.tolist()}")
     print(f"Array max score: {max(scores)}")
+    print("Iterating through the array:")
+    for index, score in enumerate(scores):
+        print(f" - index {index}: {score}")
 
     if not recursive:
         demonstrate_arrays(recursive=True)
