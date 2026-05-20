@@ -60,6 +60,37 @@ def demonstrate_arrays(recursive: bool = False) -> None:
         demonstrate_arrays(recursive=True)
 
 
+def demonstrate_arrays_with_user_input(
+    recursive: bool = False, user_text: str | None = None
+) -> None:
+    announce_feature("Arrays with User Input Conversion", recursive)
+    scores = array("i", [82, 91, 76, 88])
+    scores.append(95)
+    scores[0] = 85
+    print(f"Array values: {scores.tolist()}")
+    print(f"Array max score: {max(scores)}")
+    print("Iterating with a C/C++-style index loop:")
+    print("Equivalent C/C++: for (int i = 0; i < len; i++)")
+    for i in range(len(scores)):
+        print(f" - index {i}: {scores[i]}")
+
+    if user_text is None:
+        try:
+            user_text = input("Enter a number as text: ")
+        except EOFError:
+            user_text = "0"
+            print("No input detected. Using default string: '0'")
+
+    try:
+        converted_value = int(user_text)
+        print(f"Input string '{user_text}' converted to integer: {converted_value}")
+    except ValueError:
+        print(f"Invalid integer input: '{user_text}'")
+
+    if not recursive:
+        demonstrate_arrays_with_user_input(recursive=True, user_text=user_text)
+
+
 def demonstrate_flow_control(recursive: bool = False) -> None:
     announce_feature("Flow Control", recursive)
     numbers = [1, 2, 3, 4, 5, 6]
@@ -107,6 +138,7 @@ def main() -> None:
     demonstrate_tuples()
     demonstrate_dictionaries()
     demonstrate_arrays()
+    demonstrate_arrays_with_user_input()
     demonstrate_flow_control()
     demonstrate_operator_precedence()
 
